@@ -265,13 +265,8 @@ hr.space {background:#fff;color:#fff;}
 .clearfix, .container {display:block;}
 .clear {clear:both;}
 
-ul#posts{
-  list-style-type: none;
-  margin-left: 0;
-  padding-left:0;
-}
 
-ul#posts li{
+div#posts .post-item{
   margin-left: 0;
   padding-left: 0;
   padding-bottom: 15px;

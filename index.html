@@ -49,14 +49,14 @@
   		  <a href="https://github.com/simplyb" class="profile-item" target="_blank">Github</a>
   		  <a href="/resume.html" class="profile-item last" target="_blank">Resume</a>
       </h2>
-      <div class="tweets span-9">
-      <a class="twitter-timeline" data-dnt=true href="https://twitter.com/peterbroderick" data-widget-id="245967925876506624">Tweets by @peterbroderick</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      <div>
+        <h3 class='prepend-top'>Blog Posts</h3>
+        <div id="posts">
+          <div class="left-posts span-7"></div>
+          <div class="middle-posts span-7"></div>
+          <div class="right-posts span-7"></div>
+        </div>
       </div>
-      <div class="span-9">
-        <h3>Blog Posts</h3>
-        <ul id="posts"></ul>
-      </iv>
 		</div>
 	</div><!-- end div .container -->
 
@@ -79,14 +79,24 @@
 function tumblr(data) {
   debugger
   var posts = data.response.posts;
-  posts_ul = $('#posts');
+  var left_posts_div = $('#posts .left-posts');
+  var middle_posts_div = $('#posts .middle-posts');
+  var right_posts_div = $('#posts .right-posts');
+  var posts_div = null;
   for (var i=0; i<posts.length; i++) {
     var p = posts[i];
     var title = p.title;
     if(title){
       var date_arr = p.date.split(" ")[0].split("-")
       var date_str = date_arr[1] + "/" + date_arr[2] + "/" + date_arr[0]
-      posts_ul.append('<li><a href="'+p.post_url+'">'+title+'</a>&nbsp;<span class="date">' + date_str + '</span></li>');
+      if(i % 3 == 0){
+        posts_div = left_posts_div;
+      }else if (i % 3 == 1){
+        posts_div = middle_posts_div;
+      }else if (i % 3 == 2){
+        posts_div = right_posts_div;
+      }
+      posts_div.append('<div class="post-item"><a href="'+p.post_url+'">'+title+'</a>&nbsp;<span class="date">' + date_str + '</span></div>');
     }
   }
 }
@@ -97,7 +107,7 @@ function tumblr(data) {
 <script>
   $(function(){
     $.ajax({
-      url: 'http://api.tumblr.com/v2/blog/simplybinary.tumblr.com/posts?tag=pete&jsonp=tumblr&limit=6',
+      url: 'http://api.tumblr.com/v2/blog/simplybinary.tumblr.com/posts?tag=pete&jsonp=tumblr&limit=10',
       data: { api_key: "all8BnWBQruzk0kzqQNXzCH8E4UpMQ1yfADo7C0G8bmIdG9Kbd"},
       dataType: "jsonp",
       jsonp : "tumblr"
