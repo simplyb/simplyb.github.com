@@ -77,7 +77,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
 <script type="text/javascript">
 function tumblr(data) {
-  debugger
   var posts = data.response.posts;
   var left_posts_div = $('#posts .left-posts');
   var middle_posts_div = $('#posts .middle-posts');
@@ -107,7 +106,7 @@ function tumblr(data) {
 <script>
   $(function(){
     $.ajax({
-      url: 'http://api.tumblr.com/v2/blog/simplybinary.tumblr.com/posts?tag=pete&jsonp=tumblr&limit=10',
+      url: 'http://api.tumblr.com/v2/blog/simplybinary.tumblr.com/posts?tag=pete&jsonp=tumblr&limit=20',
       data: { api_key: "all8BnWBQruzk0kzqQNXzCH8E4UpMQ1yfADo7C0G8bmIdG9Kbd"},
       dataType: "jsonp",
       jsonp : "tumblr"
